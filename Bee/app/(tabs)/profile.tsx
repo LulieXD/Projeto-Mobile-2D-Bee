@@ -7,14 +7,14 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-export default function HomeScreen() {
+export default function UserProfile() {
     return (
       <ParallaxScrollView
         headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
         headerImage={
           <Image
-            source={require('@/assets/images/partial-react-logo.png')}
-            style={styles.reactLogo}
+            source={require('@/assets/images/sunflower.jpg')}
+            style={styles.sunflower}
           />
         }>
         </ParallaxScrollView>
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
       gap: 8,
       marginBottom: 8,
     },
-    reactLogo: {
-      height: 178,
-      width: 290,
+    sunflower: {
+      height: 250,
+      width: 535,
       bottom: 0,
       left: 0,
       position: 'absolute',
