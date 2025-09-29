@@ -6,6 +6,7 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function UserProfile() {
     return (
@@ -15,11 +16,15 @@ export default function UserProfile() {
           <Image
             source={require('@/assets/images/sunflower.jpg')}
             style={styles.sunflower}
+            
           />
         }>
         </ParallaxScrollView>
   );
 }
+        <ThemedText>
+          <FontAwesome5 name="user-circle" size={200} color="black" />
+        </ThemedText>
 
 const styles = StyleSheet.create({
     titleContainer: {

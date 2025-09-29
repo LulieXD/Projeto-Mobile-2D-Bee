@@ -1,73 +1,79 @@
-/*página de login*/
-
-import { Image } from 'expo-image';
-import { Platform, StyleSheet, View } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import React, { useState } from 'react';
+import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
-    return (
-      <View
-       >
-        <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">Welcome!</ThemedText>
-          <HelloWave />
-        </ThemedView>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-          <ThemedText>
-            Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-            Press{' '}
-            <ThemedText type="defaultSemiBold">
-              {Platform.select({
-                ios: 'cmd + d',
-                android: 'cmd + m',
-                web: 'F12',
-              })}
-            </ThemedText>{' '}
-            to open developer tools.
-          </ThemedText>
-        </ThemedView>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          <ThemedText>
-            {`Tap the Explore tab to learn more about what's included in this starter app.`}
-          </ThemedText>
-        </ThemedView>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-          <ThemedText>
-            {`When you're ready, run `}
-            <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-            <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-            <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-            <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-          </ThemedText>
-        </ThemedView>
-      </View>
-    );
-  }
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  
-  const styles = StyleSheet.create({
-    titleContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 8,
-    },
-    stepContainer: {
-      gap: 8,
-      marginBottom: 8,
-    },
-    reactLogo: {
-      height: 178,
-      width: 290,
-      bottom: 0,
-      left: 0,
-      position: 'absolute',
-    },
-  });
-  
+  const handleLogin = () => {
+    if (username && password) {
+      Alert.alert('Login', `Bem-vindo, ${username}!`);
+    } else {
+      Alert.alert('Erro', 'Por favor, preencha todos os campos.');
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <ThemedView style={styles.titleContainer}>
+        <ThemedText type="title">Bem-vindo!</ThemedText>
+      </ThemedView>
+
+      {/* Campo de Usuário */}
+      <ThemedView style={styles.inputContainer}>
+        <ThemedText type="subtitle">Usuário</ThemedText>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite seu usuário"
+          value={username}
+          onChangeText={setUsername}
+        />
+      </ThemedView>
+
+      {/* Campo de Senha */}
+      <ThemedView style={styles.inputContainer}>
+        <ThemedText type="subtitle">Senha</ThemedText>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite sua senha"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+      </ThemedView>
+
+      {/* Botão de Login */}
+      <View style={styles.buttonContainer}>
+        <Button title="Entrar" onPress={handleLogin} />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5e642', // Cor de fundo da tela
+    padding: 20,
+    justifyContent: 'center', // Centraliza os elementos
+  },
+  titleContainer: {
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  inputContainer: {
+    marginBottom: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    marginTop: 20,
+  },
+});
