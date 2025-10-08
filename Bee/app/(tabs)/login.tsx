@@ -17,6 +17,9 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      {/* White Square as Background */}
+      <View style={styles.whiteSquare}></View>
+
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Bem-vindo!</ThemedText>
       </ThemedView>
@@ -56,15 +59,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5e642', // Cor de fundo da tela
+    paddingTop: 0.5,
     padding: 20,
     justifyContent: 'center', // Centraliza os elementos
+    position: 'relative', // Para permitir que o whiteSquare fique sobre o fundo
+  
   },
   titleContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 4,
+    zIndex: 1, // Garante que o título fique acima do whiteSquare
   },
   inputContainer: {
     marginBottom: 20,
+    zIndex: 1, // Garante que os campos de input fiquem acima do whiteSquare
   },
   input: {
     height: 40,
@@ -75,5 +83,18 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 20,
+    zIndex: 1, // Garante que o botão fique acima do whiteSquare
+  },
+
+  // Estilo do whiteSquare
+  whiteSquare: {
+    position: 'absolute',
+    top: 70,  // Ajusta a posição para aparecer atrás do conteúdo
+    left: '5%',  // Ajuste de largura
+    width: '90%',
+    height: 400,  // Define o tamanho do whiteSquare
+    backgroundColor: '#FFFEE5',
+    borderRadius: 30,
+    zIndex: 0,  // Faz o whiteSquare ficar atrás dos outros componentes
   },
 });
