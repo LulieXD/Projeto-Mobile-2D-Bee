@@ -1,41 +1,61 @@
-/*loja de jogos ou carrinho*/
+/*configurações ou menu*/
 
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-
-export default function TabTwoScreen() {
+const header = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ }}
-      headerImage={
-        <IconSymbol
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Os mais jogados.</ThemedText>
-      </ThemedView>
-      <ThemedText type="title">Novidades.</ThemedText>
-      <ThemedText type="title">Espaço Indie.</ThemedText>
+    <View style={styles.container}>
+      <View style={styles.header}>
+      <View>
+      {/* Imagem local */}
+      <Image
+        source={require('@/assets/images/logo.png')}
+        style={styles.localImage}
+      />
+    </View>
+      </View>
+      <View style={styles.loja}>
+        <Text style={styles.textoHeader}>MENU</Text>
+      </View>
+    </View>
     
-    </ParallaxScrollView>
   );
-}
+};
+<button><a href="./explore.tsx"></a></button>
 
+//css
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1, 
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+
+  header: {
+    width: '100%', 
+    height: 80,
+    backgroundColor: '#FFBB00',
+    
+    // Alinha o texto da header
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+
+  loja: {
+    width: '100%',
+    height: 80,
+    backgroundColor: '#151515',
+  },
+
+  textoHeader: {
+    color: 'white', 
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+
+  localImage: {
+      width: 400,
+      height: 100,
+      margin: 10,
+  }
 });
+
+export default header;
