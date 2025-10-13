@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, View, TextInput, Alert, TouchableOpacity, Text } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
@@ -47,9 +47,11 @@ export default function HomeScreen() {
         />
       </ThemedView>
 
-      {/* Botão de Login */}
+      {/* Botão de Login com TouchableOpacity */}
       <View style={styles.buttonContainer}>
-        <Button title="Entrar" onPress={handleLogin} />
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -58,12 +60,11 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5e642', // Cor de fundo da tela
+    backgroundColor: '#FFBB00', // Cor de fundo da tela
     paddingTop: 0.5,
     padding: 20,
     justifyContent: 'center', // Centraliza os elementos
     position: 'relative', // Para permitir que o whiteSquare fique sobre o fundo
-  
   },
   titleContainer: {
     alignItems: 'center',
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: '#ccc',
+    borderColor: '#000',
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 20,
     zIndex: 1, // Garante que o botão fique acima do whiteSquare
+    alignItems: 'center',
   },
 
   // Estilo do whiteSquare
@@ -93,8 +95,24 @@ const styles = StyleSheet.create({
     left: '5%',  // Ajuste de largura
     width: '90%',
     height: 400,  // Define o tamanho do whiteSquare
-    backgroundColor: '#FFFEE5',
+    backgroundColor: '#F1A10C',
     borderRadius: 30,
     zIndex: 0,  // Faz o whiteSquare ficar atrás dos outros componentes
+  },
+
+  // Estilo do botão
+  button: {
+    backgroundColor: '#000', // Cor do botão
+    paddingVertical: 10,         // Tamanho vertical
+    paddingHorizontal: 20,       // Tamanho horizontal
+    borderRadius: 25,           // Bordas arredondadas
+    alignItems: 'center',       // Alinha o texto no centro
+    justifyContent: 'center',
+    width: '50%',               // Botão de tamanho médio (ajustável)
+  },
+  buttonText: {
+    color: '#F1A10C',              // Cor do texto
+    fontSize: 16,               // Tamanho da fonte
+    fontWeight: 'bold',         // Negrito
   },
 });
