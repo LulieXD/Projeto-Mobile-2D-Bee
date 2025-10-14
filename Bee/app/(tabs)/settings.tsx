@@ -21,6 +21,8 @@ const header = () => {
 };
 <button><a href="./explore.tsx"></a></button>
 
+export default header;
+
 //css
 
 const styles = StyleSheet.create({
@@ -55,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default header;
+
