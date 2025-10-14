@@ -1,6 +1,6 @@
 /*configurações ou menu*/
 
-import { AntDesign, Feather, FontAwesome6 } from '@expo/vector-icons';
+import { AntDesign, FontAwesome6 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -38,13 +38,6 @@ const Settings = () => {
         </View>
       </TouchableOpacity>
 
-      {/*---notificações---*/}
-      <TouchableOpacity onPress={store}> 
-        <View style={[styles.botoes, {borderWidth: 1}]}>
-          <Feather name="bell" size={35} color="white"/> 
-          <Text style={styles.textoBotoes}>Notificações</Text> 
-        </View>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
