@@ -38,11 +38,19 @@ const Settings = () => {
         </View>
       </TouchableOpacity>
 
-      {/*---Notificações---*/}
+      {/*---notificações---*/}
       <TouchableOpacity onPress={store}> 
         <View style={[styles.botoes, {borderWidth: 1}]}>
           <Feather name="bell" size={35} color="white"/> 
           <Text style={styles.textoBotoes}>Notificações</Text> 
+        </View>
+      </TouchableOpacity>
+
+      {/*---carrinho---*/}
+      <TouchableOpacity onPress={store}> 
+        <View style={styles.botoes}>
+          <Feather name="shopping-cart" size={35} color="white"/> 
+          <Text style={styles.textoBotoes}>Carrinho</Text> 
         </View>
       </TouchableOpacity>
 
