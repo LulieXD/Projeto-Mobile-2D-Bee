@@ -1,93 +1,129 @@
-/*configurações ou menu*/
-import 'bootstrap/dist/css/bootstrap.css';
-import Carousel from 'react-bootstrap/Carousel';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
+import { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const header = () => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-      <View>
-      {/* Imagem local */}
-      <Image
-        source={require('@/assets/images/logo.png')}
-        style={styles.localImage}
-      />
-    </View>
-      </View>
-      <View style={styles.loja}>
-        <Text style={styles.textoHeader}>MENU</Text>
-      </View>
-    </View>
-    
-  );
-};
+import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { ThemedView } from '@/components/ThemedView';
 
-export default function App() {
+export default function HomeScreen() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images = [
+    require('@/assets/images/Death_Stranding_2-01.jpg'),
+    require('@/assets/images/HellBlade.jpg'),
+    require('@/assets/images/Monster-hunter.webp'),
+  ];
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
   return (
-    <div style={{ display: 'block', width: 700, padding: 30 }}>
-      <h4>React-Bootstrap Carousel Component</h4>
-      <Carousel fade>
-        <Carousel.Item interval={1500}>
-          <img
-            className="d-block w-100"
-            src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122739/2-300x115.png"
-            alt="Image One"
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#FFBB00', dark: '#FFBB00' }}
+      headerImage={
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('@/assets/images/logo.png')}
+            style={styles.logo}
           />
-          <Carousel.Caption>
-            <h3>Label for first slide</h3>
-            <p>Sample Text for Image One</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item interval={500}>
-          <img
-            className="d-block w-100"
-            src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
-            alt="Image Two"
+        </View>
+      }
+    >
+      <ThemedView style={styles.heroContainer}>
+        {/* Carrossel de Imagens */}
+        <View style={styles.carouselContainer}>
+          <TouchableOpacity onPress={prevImage} style={styles.arrowButton}>
+            <Text style={styles.arrowText}>‹</Text>
+          </TouchableOpacity>
+
+          <Image
+            source={images[currentIndex]}
+            style={styles.carouselImage}
+            contentFit="cover"
           />
-          <Carousel.Caption>
-            <h3>Label for second slide</h3>
-            <p>Sample Text for Image Two</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-    </div>
+
+          <TouchableOpacity onPress={nextImage} style={styles.arrowButton}>
+            <Text style={styles.arrowText}>›</Text>
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.tagline}>Veja nossas categorias.</Text>
+        <TouchableOpacity style={styles.ctaButton}>
+        </TouchableOpacity>
+      </ThemedView>
+    </ParallaxScrollView>
   );
 }
 
-<button><a href="./explore.tsx"></a></button>
-
-//css
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-  },
-
-  header: {
-    width: '100%', 
-    height: 80,
-    backgroundColor: '#FFBB00',
-    
-    // Alinha o texto da header
+  logoContainer: {
+    flex: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  loja: {
+    backgroundColor: '#FFBB00',
+    paddingVertical: 20,
     width: '100%',
-    height: 80,
-    backgroundColor: '#151515',
+    height: '100%',
   },
-
-  textoHeader: {
-    color: 'white', 
+  logo: {
+    width: 200,
+    height: 50,
+    resizeMode: 'contain',
+  },
+  heroContainer: {
+    padding: 25,
+    alignItems: 'center',
+    backgroundColor: '#F1A10C',
+    marginBottom: 0,
+  },
+  carouselContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: 16,
+  },
+  arrowButton: {
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 8,
+  },
+  arrowText: {
+    color: '#fff',
+    fontSize: 24,
     fontWeight: 'bold',
-    fontSize: 20,
   },
-
-  localImage: {
-      width: 400,
-      height: 100,
-      margin: 10,
-  }
-});
+  carouselImage: {
+    width: 300,
+    height: 160,
+    borderRadius: 15,
+    marginHorizontal: 12,
+  },
+  tagline: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#fff',
+    marginBottom: 24,
+    lineHeight: 22,
+  },
+  ctaButton: {
+    backgroundColor: '#000',
+    paddingHorizontal: 36,
+    paddingVertical: 14,
+    borderRadius: 30,
+  },
+  ctaText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+})
