@@ -1,9 +1,9 @@
+import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { ThemedView } from '@/components/ThemedView';
+import { AntDesign } from "@expo/vector-icons/AntDesign";
 import { Image } from 'expo-image';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,6 +22,8 @@ export default function HomeScreen() {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
+  
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#FFBB00', dark: '#FFBB00' }}
@@ -31,6 +33,7 @@ export default function HomeScreen() {
             source={require('@/assets/images/logo.png')}
             style={styles.logo}
           />
+          <AntDesign name="menu" size={24} color="black" />
         </View>
       }
     >
@@ -71,9 +74,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   logo: {
-    width: 200,
-    height: 50,
-    resizeMode: 'contain',
+    width: 400,
+    height: 100,
   },
   heroContainer: {
     padding: 25,
