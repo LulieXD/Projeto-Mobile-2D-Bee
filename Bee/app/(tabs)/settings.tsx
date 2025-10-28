@@ -9,7 +9,7 @@ const Settings = () => {
   const navigation = useNavigation();
 
   const store = () => {
-    navigation.navigate('store'); 
+    navigation.navigate('notificação'); 
   };
   
   return (
