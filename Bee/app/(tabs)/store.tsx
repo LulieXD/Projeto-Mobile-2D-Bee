@@ -1,6 +1,5 @@
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedView } from '@/components/ThemedView';
-import { AntDesign } from "@expo/vector-icons/AntDesign";
 import { Image } from 'expo-image';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -33,7 +32,7 @@ export default function HomeScreen() {
             source={require('@/assets/images/logo.png')}
             style={styles.logo}
           />
-          <AntDesign name="menu" size={24} color="black" />
+          {/* <AntDesign name="menu" size={24} color="black" /> */}
         </View>
       }
     >
