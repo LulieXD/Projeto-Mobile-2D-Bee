@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   
   headerTexto: { 
-    color: 'white', 
+    color: 'black', 
     fontWeight: 'bold',
     fontSize: 25,
   },
