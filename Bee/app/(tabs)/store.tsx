@@ -1,10 +1,14 @@
 import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Image } from 'expo-image';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
+<ThemedView style={styles.titleContainer}>
+  <ThemedText>This app includes example code to help you get started.</ThemedText>
+  </ThemedView>
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
@@ -55,7 +59,7 @@ export default function HomeScreen() {
         </View>
 
         <Text style={styles.tagline}>Veja nossas categorias.</Text>
-        <TouchableOpacity style={styles.ctaButton}>
+        <TouchableOpacity>
         </TouchableOpacity>
       </ThemedView>
     </ParallaxScrollView>
@@ -108,7 +112,14 @@ const styles = StyleSheet.create({
     height: 160,
     borderRadius: 15,
     marginHorizontal: 12,
-  },
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+ },
   tagline: {
     fontSize: 16,
     textAlign: 'center',
@@ -116,15 +127,11 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     lineHeight: 22,
   },
-  ctaButton: {
-    backgroundColor: '#000',
-    paddingHorizontal: 36,
-    paddingVertical: 14,
-    borderRadius: 30,
-  },
+
   ctaText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
-  },
+  }
+  
 })
