@@ -9,9 +9,17 @@ const Settings = () => {
   const navigation = useNavigation();
 
   const store = () => {
-    navigation.navigate('notificacao'); 
+    navigation.navigate('store'); 
   };
-  
+  const noticias = () => {
+    navigation.navigate('noticia'); 
+  };
+  const notificacoes = () => {
+    navigation.navigate('notificação'); 
+  };
+  const carrinho = () => {
+    navigation.navigate('carrinho'); 
+  };
   return (
     <SafeAreaView style={styles.container}> 
       
@@ -31,7 +39,7 @@ const Settings = () => {
       </TouchableOpacity>
 
       {/*---noticias---*/}
-      <TouchableOpacity onPress={store}> 
+      <TouchableOpacity onPress={noticias}> 
         <View style={styles.botoes}>
           <FontAwesome6 name="newspaper" size={35} color="white"/> 
           <Text style={styles.textoBotoes}>Notícias</Text> 
@@ -39,7 +47,7 @@ const Settings = () => {
       </TouchableOpacity>
 
       {/*---notificações---*/}
-      <TouchableOpacity onPress={store}> 
+      <TouchableOpacity onPress={notificacoes}> 
         <View style={[styles.botoes, {borderWidth: 1}]}>
           <Feather name="bell" size={35} color="white"/> 
           <Text style={styles.textoBotoes}>Notificações</Text> 
@@ -47,7 +55,7 @@ const Settings = () => {
       </TouchableOpacity>
 
       {/*---carrinho---*/}
-      <TouchableOpacity onPress={store}> 
+      <TouchableOpacity onPress={carrinho}> 
         <View style={styles.botoes}>
           <Feather name="shopping-cart" size={35} color="white"/> 
           <Text style={styles.textoBotoes}>Carrinho</Text> 
@@ -100,3 +108,4 @@ const styles = StyleSheet.create({
 });
 
 export default Settings;
+
