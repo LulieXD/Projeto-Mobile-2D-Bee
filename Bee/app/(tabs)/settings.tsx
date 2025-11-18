@@ -15,7 +15,7 @@ const Settings = () => {
     navigation.navigate('noticia'); 
   };
   const notificacoes = () => {
-    navigation.navigate('notificação'); 
+    navigation.navigate('notificacao'); 
   };
   const carrinho = () => {
     navigation.navigate('carrinho'); 

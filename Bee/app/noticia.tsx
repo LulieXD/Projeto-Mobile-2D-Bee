@@ -1,29 +1,53 @@
-// Exemplo: /app/_layout.js (Se este é o seu Stack global)
+/*configurações ou menu*/
 
-import { Stack } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-export default function RootLayout() {
+const Settings = () => {
+  const navigation = useNavigation();
   return (
-    <Stack>
+    <SafeAreaView style={styles.container}> 
       
-      {/* 1. Remove a header da sua página 'noticia' */}
-      <Stack.Screen 
-        name="noticia" 
-        options={{
-          headerShown: false, 
-        }}
-      />
-      
-      {/* 2. Remove a header da sua navegação de abas (se existir) */}
-      <Stack.Screen 
-        name="(tabs)" // Se você usa um grupo de abas
-        options={{
-          headerShown: false,
-        }}
-      />
-      
-      {/* ... outras telas ... */}
-      
-    </Stack>
+      {/* ---HEADER--- */}
+      <View style={styles.header}>
+        <Text style={styles.headerTexto}>NOTÍCIAS</Text>
+      </View>
+      <View style={styles.texto}>Nenhuma notícia encontrada</View>
+    </SafeAreaView>
   );
-}
+};
+
+//css
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    backgroundColor: 'black',
+  },
+
+  header: {
+    width: '100%', 
+    height: 80,
+    marginBottom: 25,
+    backgroundColor: '#FFBB00',
+    justifyContent: 'center', 
+    alignItems: 'center',
+  },
+  
+  headerTexto: { 
+    color: 'white', 
+    fontWeight: 'bold',
+    fontSize: 25,
+  },
+
+  texto: {
+    color: "white",
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 200,
+    marginLeft: 25,
+    marginRight: 25,
+  },
+});
+
+export default Settings;
+
