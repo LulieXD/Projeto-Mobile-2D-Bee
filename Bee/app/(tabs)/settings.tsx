@@ -1,58 +1,111 @@
 /*configurações ou menu*/
 
-import { AntDesign } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
+import { AntDesign, Feather, FontAwesome6 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
+const Settings = () => {
+  const navigation = useNavigation();
 
-const header = () => {
+  const store = () => {
+    navigation.navigate('store'); 
+  };
+  const noticias = () => {
+    navigation.navigate('noticia'); 
+  };
+  const notificacoes = () => {
+    navigation.navigate('notificacao'); 
+  };
+  const carrinho = () => {
+    navigation.navigate('carrinho'); 
+  };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}> 
+      
+      {/* ---HEADER--- */}
       <View style={styles.header}>
-        <Text style={styles.textoHeader}>MENU</Text>
+        <Text style={styles.headerTexto}>MENU</Text>
       </View>
-      <a href="./explore"><View style={styles.loja}>
-      <Text><AntDesign name="tag" size={24} color="white"/></Text> 
-        <Text style={styles.textoHeader}>Loja</Text>
-        
-      </View></a>
-    </View>
+
+    {/*---BOTÕES---*/}
+    
+    {/*---loja---*/}
+      <TouchableOpacity onPress={store}> 
+        <View style={[styles.botoes, {borderWidth: 1}]}>
+          <AntDesign name="tag" size={35} color="white"/> 
+          <Text style={styles.textoBotoes}>Loja</Text> 
+        </View>
+      </TouchableOpacity>
+
+      {/*---noticias---*/}
+      <TouchableOpacity onPress={noticias}> 
+        <View style={styles.botoes}>
+          <FontAwesome6 name="newspaper" size={35} color="white"/> 
+          <Text style={styles.textoBotoes}>Notícias</Text> 
+        </View>
+      </TouchableOpacity>
+
+      {/*---notificações---*/}
+      <TouchableOpacity onPress={notificacoes}> 
+        <View style={[styles.botoes, {borderWidth: 1}]}>
+          <Feather name="bell" size={35} color="white"/> 
+          <Text style={styles.textoBotoes}>Notificações</Text> 
+        </View>
+      </TouchableOpacity>
+
+      {/*---carrinho---*/}
+      <TouchableOpacity onPress={carrinho}> 
+        <View style={styles.botoes}>
+          <Feather name="shopping-cart" size={35} color="white"/> 
+          <Text style={styles.textoBotoes}>Carrinho</Text> 
+        </View>
+      </TouchableOpacity>
+
+    </SafeAreaView>
   );
 };
-<button><a href="./explore.tsx"></a></button>
 
 //css
-
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
+    backgroundColor: 'black',
   },
 
   header: {
     width: '100%', 
     height: 80,
+    marginBottom: 25,
     backgroundColor: '#FFBB00',
-    
-    // Alinha o texto da header
-    justifyContent: 'center',
+    justifyContent: 'center', 
     alignItems: 'center',
   },
-
-  loja: {
-    width: '100%',
-    marginTop: 30,
-    height: '90%',
-    backgroundColor: '#151515',
-    display: 'flex',
-    flexDirection: 'row',
-    borderColor: '#534F4F'
-  },
-
-  textoHeader: {
+  
+  headerTexto: { 
     color: 'white', 
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 25,
+  },
+
+  botoes: {
+    width: '100%',
+    paddingVertical: 10,
+    paddingLeft: 15,
+    height: 60,
+    backgroundColor: '#151515',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: '#534F4F',
+  },
+  
+  textoBotoes: {
+    color: 'white', 
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginLeft: 15,
   },
 });
 
-export default header;
+export default Settings;
+
