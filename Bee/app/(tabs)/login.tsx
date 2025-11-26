@@ -1,68 +1,87 @@
+// Importa funções e componentes do React e React Native
 import { useState } from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
-import { Feather } from '@expo/vector-icons'; // Ícone olho
+
+// Importa ícones (o olho de mostrar/ocultar senha)
+import { Feather } from '@expo/vector-icons';
+
+// Importa componentes personalizados do projeto (tema)
 import { ThemedText } from '../../components/ThemedText';
 import { ThemedView } from '../../components/ThemedView';
 
+// Componente principal da tela
 export default function HomeScreen() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
+  // Estados: guardam valores digitados e se a senha aparece ou não
+  const [username, setUsername] = useState('');   // Campo usuário
+  const [password, setPassword] = useState('');   // Campo senha
+  const [showPassword, setShowPassword] = useState(false); // Mostrar/ocultar senha
+
+  // Função chamada ao clicar no botão de Login
   const handleLogin = () => {
+    // Se usuário e senha estiverem preenchidos, mostra mensagem
     if (username && password) {
       Alert.alert('Login', `Bem-vindo, ${username}!`);
-    } else {
+    } else { 
+      // Se faltar algo, mostra erro
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
     }
   };
 
   return (
+    // Contêiner principal
     <View style={styles.container}>
       
+      {/* Quadrado de fundo apenas para enfeite */}
       <View style={styles.whiteSquare}></View>
 
+      {/* Título */}
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title" style={styles.blackText}>Bem-vindo!</ThemedText>
       </ThemedView>
 
-      {/* Usuário */}
+      {/* Campo Usuário */}
       <ThemedView style={styles.inputContainer}>
         <ThemedText type="subtitle" style={styles.blackText}>Usuário</ThemedText>
+
         <TextInput
           style={styles.input}
           placeholder="Digite seu usuário"
           placeholderTextColor="#999"
-          value={username}
-          onChangeText={setUsername}
+          value={username}          // Mostra o valor digitado
+          onChangeText={setUsername} // Atualiza o estado quando digita
         />
       </ThemedView>
 
-      {/* Senha */}
+      {/* Campo Senha */}
       <ThemedView style={styles.inputContainer}>
         <ThemedText type="subtitle" style={styles.blackText}>Senha</ThemedText>
 
+        {/* Wrapper com input + ícone */}
         <View style={styles.passwordWrapper}>
+          
           <TextInput
             style={styles.inputPassword}
             placeholder="Digite sua senha"
             placeholderTextColor="#999"
-            secureTextEntry={!showPassword}
+            secureTextEntry={!showPassword}  // Se false → mostra senha; se true → oculta
             value={password}
-            onChangeText={setPassword}
+            onChangeText={setPassword}        // Atualiza senha
           />
 
+          {/* Botão do olho para mostrar/ocultar senha */}
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Feather
-              name={showPassword ? 'eye' : 'eye-off'}
+              name={showPassword ? 'eye' : 'eye-off'} // Troca o ícone
               size={22}
               color="#FFF"
             />
           </TouchableOpacity>
+
         </View>
       </ThemedView>
 
-      {/* Botão */}
+      {/* Botão de Entrar */}
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
@@ -71,7 +90,10 @@ export default function HomeScreen() {
   );
 }
 
+// Estilos visuais da tela
 const styles = StyleSheet.create({
+
+  // Estilo do contêiner principal
   container: {
     flex: 1,
     backgroundColor: '#FFBB00',
@@ -80,6 +102,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  // Quadrado decorativo do fundo
   whiteSquare: {
     position: 'absolute',
     top: 80,
@@ -90,22 +113,26 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
 
+  // Texto preto
   blackText: {
     color: '#000',
   },
 
+  // Contêiner do título
   titleContainer: {
     alignItems: 'center',
     marginBottom: 20,
     zIndex: 1,
   },
 
+  // Contêiner de cada input
   inputContainer: {
     width: '85%',
     marginBottom: 15,
     zIndex: 1,
   },
 
+  // Estilo do input de usuário
   input: {
     height: 45,
     borderWidth: 1,
@@ -117,8 +144,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 
+  // Wrapper da senha + ícone
   passwordWrapper: {
-    flexDirection: 'row',
+    flexDirection: 'row',       // Input ao lado do ícone
     alignItems: 'center',
     backgroundColor: '#000',
     borderRadius: 10,
@@ -128,12 +156,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
 
+  // Input só da senha
   inputPassword: {
-    flex: 1,
+    flex: 1,  // Ocupa todo espaço
     height: 45,
     color: '#FFF',
   },
 
+  // Botão principal
   button: {
     backgroundColor: '#000',
     paddingVertical: 12,
@@ -144,6 +174,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
 
+  // Texto do botão
   buttonText: {
     color: '#FFF',
     fontSize: 16,
